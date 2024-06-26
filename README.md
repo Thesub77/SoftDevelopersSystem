@@ -4,13 +4,20 @@ El presente proyecto es un sistema estrategico para la empresa SoftDevelopers, q
 - Python
 - C#
 - ASP .NET framework
+- CSS
+- HTML
 - Javascript
 - FastApi
+- SQLServer
+- Visual Studio 2022
+
+## Documentacion del proyecto
+En la carpeta 'DocumentacionSoftDevelopers_IntegradorV' podra encontrar el documento que explica todo el proyecto, desde el analisis de la descripcion actual del proyecto, hasta la construccion de las diversas partes que lo componen como el EDA, SSIS y el CMI.
 
 A continuacion se presentan los pasos para poder ejecutar el proyecto de manera correcta.
 
 # Restauracion de las bases de datos
-Se ha incluido una carpeta llamada 'Databases backup' que contiene 3 respaldos, uno correspondiente a la base de datos relacional de la empresa (softdevelopersBD), la siguiente es la base de datos DataWarehouse (softDevelopersDW), y por ultimo la base de datos que almacena los CMI's del proyecto web, a su vez se ha incluido un script que se encarga de limpiar las tablas de Staging y dimensiones del DataWareHouse.
+Se ha incluido una carpeta llamada 'Databases backup' que contiene 3 respaldos, uno correspondiente a la base de datos relacional de la empresa (softdevelopersBD.bak), la siguiente es la base de datos DataWarehouse (softDevelopersDW.bak), y por ultimo la base de datos que almacena los CMI's del proyecto web(CMIBD.bak), a su vez se ha incluido un script que se encarga de limpiar las tablas de Staging y dimensiones del DataWareHouse.
 
 # ETL con SSIS y carga del DataWarehouse (SSIS_DW)
 Para ejecutar el SSIS primero se recomienda ejecutar el script que se encuentra en la carpeta 'Databases backup' que trunca las tablas de Staging y las dimensiones del DataWarehouse.
