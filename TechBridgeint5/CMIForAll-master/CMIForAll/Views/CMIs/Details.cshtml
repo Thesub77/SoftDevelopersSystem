@@ -1,0 +1,98 @@
+﻿@model CMIForAll.Models.CMI
+
+@{
+    ViewBag.Title = "Details";
+}
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Cuadro de Mando</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 0px;
+        }
+
+        h2 {
+            color: black;
+            font-size: 24px;
+            border-bottom: 2px solid #FFB3BA;
+            padding-bottom: 5px;
+            text-align:center;
+        }
+
+        h3 {
+            color: #0094ff;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        h4 {
+            color: black;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #CCCCCC;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <br><br><br><br>
+    <h2>Detalles del Cuadro de mando</h2>
+    <hr>
+    <h3>@Html.DisplayNameFor(model => model.Nombre)</h3>
+    <h4>@Html.DisplayFor(model => model.Nombre)</h4>
+    <hr>
+    <h3>@Html.DisplayNameFor(model => model.Descripcion)</h3>
+    <h4>@Html.DisplayFor(model => model.Descripcion)</h4>
+    <hr>
+    <h3>@Html.DisplayNameFor(model => model.Periodo)</h3>
+    <h4>@Html.DisplayFor(model => model.Periodo)</h4>
+    <hr>
+    <h3>Objetivos</h3>
+    <h4>Excelencia en el Desarrollo de Software</h4>
+    <h4>Satisfacción del Cliente</h4>
+    <h4>Innovación Tecnológica</h4>
+    <h4>Desarrollo Profesional</h4>
+    <h4>Expansión del Mercado</h4>
+    <h4>Eficiencia Operativa</h4>
+    <hr>
+    <h3>Perspectivas</h3>
+    <h4>Perspectiva financiera </h4>
+    <h4>Perspectiva del cliente</h4>
+    <h4>Perspectiva de los procesos internos</h4>
+    <h4>Perspectiva de aprendizaje y crecimiento</h4>
+    <hr>
+    <h3>Indicadores</h3>
+    <h4>Índice de Satisfacción del Cliente</h4>
+    <h4>Tiempo Promedio de Entrega de Proyectos</h4>
+    <h4>Margen de Ganancias</h4>
+    <h4>Tasa de Retención de Empleados</h4>
+    <h4>Número de Nuevos Clientes</h4>
+    <h4>Eficiencia en el Uso de Recursos</h4>
+    <h4>Índice de Innovación</h4>
+    <h4>Rentabilidad por Proyecto</h4>
+    <h4></h4>
+    <hr>
+
+    <script src="~/Java/app.min.js"></script>
+    <script src="~/Java/jquery.min.js"></script>
+    <script src="~/Java/simplebar.js"></script>
+    <script src="~/Java/bootstrap.bundle.min.js"></script>
+    <script src="~/Java/apexxcharts.js"></script>
+    <script src="~/Java/dashboard.js"></script>
+
+</body>
+</html>
+
+

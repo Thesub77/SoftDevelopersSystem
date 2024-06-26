@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Load the ECharts library -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <title>Tech Bridge</title>
+    <link rel="shortcut icon" type="image/png" href="~/img/tech_icon.png" />
+    <link rel="stylesheet" href="~/Style/StyleEDA.css" />
+
+
+</head>
+
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="card-title fw-semibold mb-4">Metodo Describe</h2>
+    <div id="fact1" class="table-container"></div>
+    <br>
+    <br>
+    <div class="row">
+        
+        <div class="image-container">
+            <h2>Histograma de pago por proyecto</h2>
+            <img src="~/img/EDA/Histograma.png" alt="Image 1" class="responsive-image">
+        </div>
+        <div class="image-container">
+            <h2>Boxplot</h2>
+            <img src="~/img/EDA/edaBoxplot.png" alt="Image 2" class="responsive-image">
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="image-container">
+            <h2>Mapa de correlacion</h2>
+            <img src="~/img/EDA/mapa de correlacion.png" alt="Image 3" class="responsive-image">
+        </div>
+        
+    </div>
+    <!-- Your existing scripts -->
+    <script src="~/Java/GraficosDashApi.js"></script>
+    <script src="~/Java/app.min.js"></script>
+    <script src="~/Java/jquery.min.js"></script>
+    <script src="~/Java/simplebar.js"></script>
+    <script src="~/Java/bootstrap.bundle.min.js"></script>
+    <script src="~/Java/dashboard.js"></script>
+
+    <!-- Initialize the js functions -->
+    @section Scripts{
+        <script>
+            $(document).ready(() => {
+                edaResultsDesc();
+            })
+        </script>
+    }
+</body>
+
+</html>
+
+

@@ -1,0 +1,86 @@
+﻿@model CMIForAll.Models.Meta
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear indicador</title>
+    <link rel="stylesheet" href="~/Style/StyleforCMI.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <hr>
+        <hr>
+        <h2>Creacion de Metas del CMI</h2>
+        <form action="#">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Valor_esperado, "Valor Esperado", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Valor_esperado, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Valor_esperado, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Fecha_limite, "Fecha Limite", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Fecha_limite, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Fecha_limite, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IndicadorId, "Indicador", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("IndicadorId", null, htmlAttributes: new { @class = "input_special" })
+                            @Html.ValidationMessageFor(model => model.IndicadorId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group button-container">
+                        <button type="submit" class="button">Crear</button>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Metas creadas", "Index")
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </form>
+    </div>
+
+    <script src="~/Java/app.min.js"></script>
+    <script src="~/Java/jquery.min.js"></script>
+    <script src="~/Java/simplebar.js"></script>
+    <script src="~/Java/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

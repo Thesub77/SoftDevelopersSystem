@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CMIForAll.Models.Objetivo>
+
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    <link rel="stylesheet" href="~/Style/StyleforCMI.css">
+</head>
+
+<body>
+
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+
+    <h2>Objetivos creados</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Metrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ponderacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CMI.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perspectiva.Nombre)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Metrica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ponderacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CMI.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Perspectiva.Nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p>
+        @Html.ActionLink("Crear nuevo", "Create")
+    </p>
+</body>
+</html>

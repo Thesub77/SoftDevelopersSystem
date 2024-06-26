@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tech Bridge</title>
+    <link rel="shortcut icon" type="image/png" href="~/img/tech_icon.png" />
+    <link rel="stylesheet" href="~/Style/Style.css" />
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <!-- Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <a href="@Url.Action("Index","Dashboard")" class="text-nowrap logo-img">
+                        <img src="~/img/LogoTechLayout.svg" width="180" alt="" />
+
+                    </a>
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                        <i class="ti ti-x fs-8"></i>
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav scroll-sidebar " data-simplebar="">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Home</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="@Url.Action( "Index","Dashboard")" data-page="">
+                                <span class="icon-container">
+                                    <img src="~/img/ICON-dashboard.svg" alt="Icono Dashboard" class="sidebar-icon">
+                                </span>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="@Url.Action( "Index","EDA")" data-page="">
+                                <span class="icon-container">
+                                    <img src="~/img/icon-eda.svg" alt="Icono Dashboard" class="sidebar-icon">
+                                </span>
+                                <span class="hide-menu">EDA</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0);" onclick="toggleAccordion('cmi-accordion')">
+                                <span class="icon-container">
+                                    <img src="~/img/ICON-cmi.svg" alt="Icono CMI" class="sidebar-icon">
+                                </span>
+                                <span class="hide-menu">Cuadro de mando (CMI)</span>
+                            </a>
+                            <ul id="cmi-accordion" class="accordion-content">
+                                <li>
+                                    <a class="sidebar-link" href="@Url.Action("Index", "CMIs")">
+                                        <span class="hide-menu">CMIs</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidebar-link" href="@Url.Action("Create", "CMIs")">
+                                        <span class="hide-menu">Creación de CMI</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidebar-link" href="@Url.Action("Create", "Objetivoes")">
+                                        <span class="hide-menu">Objetivos</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidebar-link" href="@Url.Action("Create", "Perspectivas")">
+                                        <span class="hide-menu">Perspectivas</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidebar-link" href="@Url.Action("Create", "Indicadors")">
+                                        <span class="hide-menu">Indicador</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidebar-link" href="@Url.Action("Create", "Indicador_Dato")">
+                                        <span class="hide-menu">Indicador de datos</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidebar-link" href="@Url.Action("Create", "Metas")">
+                                        <span class="hide-menu">Metas</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- Sidebar End -->
+        <!-- Main wrapper -->
+        <div class="body-wrapper">
+            <!-- Header Start -->
+            <header class="app-header">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <ul class="navbar-nav">
+                        <!-- Icono de colapso visible en dispositivos pequeños -->
+                        <li class="nav-item d-xl-none">
+                            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                                <img src="~/img/icon-option.svg" alt="Menu Icon" style="width: 34px; height: 34px;">
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                            <!-- Icono de colapso oculto en dispositivos grandes -->
+                            <li class="nav-item d-none d-xl-block">
+
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2">
+                                    <img src="~/img/user-1.jpg" alt="" width="35" height="35" class="rounded-circle" id="profile-pic">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2" id="dropdown-menu">
+                                    <div class="message-body">
+                                        <a href="@Url.Action("Index","Login")" class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar Sesión</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </nav>
+            </header>
+            <!-- Header End -->
+            <!-- Main Content Start -->
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        @RenderBody()
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Tech Brige-SoftDevelopers</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- Main Content End -->
+            <!-- Container for loading pages -->
+            <div class="container-fluid" id="content-container">
+                <!-- El contenido dinámico se cargará aquí -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Java/Menu.js"></script>
+
+
+    <script src="~/Java/app.min.js"></script>
+    <script src="~/Java/jquery.min.js"></script>
+    <script src="~/Java/simplebar.js"></script>
+    <script src="~/Java/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    @RenderSection("Scripts", required: false) <!-- Renderiza la sección Scripts opcionalmente -->
+
+</body>
+
+</html>
+
+

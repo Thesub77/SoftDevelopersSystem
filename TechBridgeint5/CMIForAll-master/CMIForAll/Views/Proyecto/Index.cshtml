@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="~/Content/StyleForms.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Proyecto</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required class="input">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <input type="text" id="descripcion" name="descripcion" required class="input">
+            </div>
+            <div class="form-group search-group">
+                <label for="cliente">Cliente</label>
+                <div class="search-input-container">
+                    <input type="text" id="cliente" name="cliente" required class="input search-input" placeholder="Nombre del cliente">
+                    <button class="search-button" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inicio">Fecha de inicio</label>
+                <input type="date" id="inicio" name="inicio" required class="input input-date">
+            </div>
+            <div class="form-group">
+                <label for="fin">Fecha de finalización</label>
+                <input type="date" id="fin" name="fin" required class="input input-date">
+            </div>
+            <div class="form-group">
+                <label for="ganancia">Margen de ganancia</label>
+                <input type="text" id="ganancia" name="ganancia" required class="input">
+            </div>
+            <div class="form-group">
+                <label for="entrega">Fecha de entrega</label>
+                <input type="date" id="entrega" name="entrega" required class="input input-date">
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <input type="text" id="estado" name="estado" required class="input">
+            </div>
+            <div class="button-container">
+                <button class="button" type="submit">Listo</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

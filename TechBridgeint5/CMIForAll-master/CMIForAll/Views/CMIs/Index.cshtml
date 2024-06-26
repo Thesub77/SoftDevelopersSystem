@@ -1,0 +1,112 @@
+﻿@model IEnumerable<CMIForAll.Models.CMI>
+
+@{
+    ViewBag.Title = "Index";
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tech Bridge</title>
+    <link rel="shortcut icon" type="image/png" href="../html/img/Logo1.svg" />
+
+    <style>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 30px;
+        }
+
+            .table th,
+            .table td {
+                border: 1px solid #dddddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            .table th {
+                background-color: #f2f2f2;
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .table tr:hover {
+                background-color: #dddddd;
+            }
+
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <hr>
+    <hr>
+    <hr>
+    <br>
+    <br>
+    <h2>Cuadros de mandos</h2>
+    <br>
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Periodo)
+            </th>
+            <th>
+                Cant. Objetivos
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Periodo)
+                </td>
+                <td>
+                    @item.Objetivos.Count  @Html.ActionLink("+", "Create", "Objetivoes", null, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Ver detalle", "Details", new { id = item.Id })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p class="">
+        @Html.ActionLink("Crear", "Create")
+    </p>
+
+    <script src="~/Java/app.min.js"></script>
+    <script src="~/Java/jquery.min.js"></script>
+    <script src="~/Java/simplebar.js"></script>
+    <script src="~/Java/bootstrap.bundle.min.js"></script>
+    <script src="~/Java/apexxcharts.js"></script>
+    <script src="~/Java/dashboard.js"></script>
+
+</body>
+</html>

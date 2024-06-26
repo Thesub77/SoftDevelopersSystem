@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="~/Content/StyleForms.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Pagos</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre del proyecto</label>
+                <input type="text" id="nombre" name="nombre" required class="input">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Monto</label>
+                <input type="number" id="descripcion" name="monto" required class="input">
+            </div>
+            <div class="form-group search-group">
+                <label for="cliente">Cliente</label>
+                <div class="search-input-container">
+                    <input type="text" id="cliente" name="cliente" required class="input search-input" placeholder="Nombre del cliente">
+                    <button class="search-button" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fechapago">Fecha de pago</label>
+                <input type="date" id="fechapago" name="fechapago" required class="input input-date">
+            </div>
+            <div class="form-group search-group">
+                <label for="seguimientoid">Seguimiento ID</label>
+                <div class="search-input-container">
+                    <input type="text" id="seguimientoid" name="seguimientoid" required class="input search-input" placeholder="ID">
+                    <button class="search-button" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button" type="submit">Listo</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

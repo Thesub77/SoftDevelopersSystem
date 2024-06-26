@@ -1,0 +1,30 @@
+### Librerias necesarias para ejecutar el script correctamente
+
+pandas
+Installation: pip install pandas
+
+edaSQL
+Installation: pip instal edaSQL
+
+numpy
+Installation: pip install numpy
+@NOTE: pandas installation automatically install numpy dependences
+
+matplotlib.pyplot
+Installation: pip install matplotlib
+
+pyodbc
+Installation: pip install pyodbc
+
+seaborn
+Installation: pip install seaborn
+@NOTE: pandas installation automatically install seaborn dependences
+
+scipy.stats
+Installation: pip install scipy
+
+pyod.models.mad
+Installation: pip install pyod.models.mad or pip install pyod for a complete installation
+
+sklearn
+Installation: pip install sklearn
