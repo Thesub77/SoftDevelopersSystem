@@ -1,0 +1,2897 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/23/2024 3:02:06 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LABCBT-28"
+  DTS:CreatorName="LABCBT-28\Estudiante"
+  DTS:DTSID="{A791BE9E-5511-4E2A-ADBB-DC63C738BFD0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="19466"
+  DTS:ObjectName="load_DW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{044BD1D4-F177-4A12-BDA3-357D8F295EF3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.softdevelopersBD]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FB9C35E5-4193-482B-A950-B18BB32A42B5}"
+      DTS:ObjectName="LocalHost.softdevelopersBD">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=softdevelopersBD;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-load_DW-{FB9C35E5-4193-482B-A950-B18BB32A42B5}LocalHost.softdevelopersBD;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.softDevelopersDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+      DTS:ObjectName="LocalHost.softDevelopersDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=softDevelopersDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-load_DW-{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}LocalHost.softDevelopersDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{82332F24-650D-4F17-8E3B-799EA952C581}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LineageKey">
+      <DTS:VariableValue
+        DTS:DataType="3">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E6218830-698C-45F5-A7B0-238324757EEC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadDate">
+      <DTS:VariableValue
+        DTS:DataType="7">12:00:00 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B932C5E9-0014-43B7-927E-EBF9DAC41F10}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadType">
+      <DTS:VariableValue
+        DTS:DataType="8">F</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A4B9E10F-071E-41A1-B3A6-C32BC944815E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreviousLoadDate">
+      <DTS:VariableValue
+        DTS:DataType="7">12:00:00 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ECD9C5C3-D1D2-4ED2-A6D6-5436151AA1FE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">Dim_Customer</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Customer Dimension"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D215BF1B-1024-448A-8E5E-4082207C0C8B}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Customer Dimension">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer Dimension\DF Populate Staging"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{06C46E89-5BD1-423F-A6B8-E2B131BE71D9}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DF Populate Staging"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origen de OLE DB"
+                  name="Load_StagingCustomer"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC Load_StagingCustomer ?,?
+WITH RESULT SETS
+(
+    (
+        
+[_SourceKey] [nvarchar](50),
+
+        [company name] [nvarchar](100),
+        
+[company contact] [nvarchar](100),
+        
+[company location] [nvarchar](255),
+        
+[customer modified date] [date],
+        
+[Valid From] [datetime], 
+        [Valid To] [datetime]
+    )
+)</property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="Asignaciones entre los parámetros del comando SQL y las variables."
+                      name="ParameterMapping">"@LastLoadDate:Input",{A4B9E10F-071E-41A1-B3A6-C32BC944815E};"@NewLoadDate:Input",{E6218830-698C-45F5-A7B0-238324757EEC};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.softdevelopersBD]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.softdevelopersBD]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB]"
+                      name="Salida de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[_SourceKey]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[_SourceKey]"
+                          length="50"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[_SourceKey]"
+                          name="_SourceKey"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[company name]"
+                          length="100"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company name]"
+                          name="company name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company contact]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[company contact]"
+                          length="100"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company contact]"
+                          name="company contact"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company location]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[company location]"
+                          length="255"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company location]"
+                          name="company location"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[customer modified date]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[customer modified date]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[customer modified date]"
+                          name="customer modified date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[Valid From]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[Valid From]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[Valid From]"
+                          name="Valid From"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[Valid To]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[Valid To]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[Valid To]"
+                          name="Valid To"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[_SourceKey]"
+                          dataType="wstr"
+                          length="50"
+                          name="_SourceKey" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[company name]"
+                          dataType="wstr"
+                          length="100"
+                          name="company name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[company contact]"
+                          dataType="wstr"
+                          length="100"
+                          name="company contact" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[company location]"
+                          dataType="wstr"
+                          length="255"
+                          name="company location" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[customer modified date]"
+                          dataType="dbDate"
+                          name="customer modified date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[Valid From]"
+                          dataType="dbTimeStamp"
+                          name="Valid From" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].ExternalColumns[Valid To]"
+                          dataType="dbTimeStamp"
+                          name="Valid To" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[_SourceKey]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[_SourceKey]"
+                          name="_SourceKey" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[company name]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[company name]"
+                          name="company name" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[company contact]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[company contact]"
+                          name="company contact" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[company location]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[company location]"
+                          name="company location" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[customer modified date]"
+                          dataType="dbDate"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[customer modified date]"
+                          name="customer modified date" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[Valid From]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[Valid From]"
+                          name="Valid From" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[Valid To]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[Valid To]"
+                          name="Valid To" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="StagingCustomer_Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Staging_Customer]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.softDevelopersDW]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.softDevelopersDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].Columns[Valid From]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Valid From"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid From]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[Valid From]" />
+                        <inputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].Columns[Valid To]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Valid To"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid To]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[Valid To]" />
+                        <inputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].Columns[_SourceKey]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="_SourceKey"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceKey]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[_SourceKey]" />
+                        <inputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].Columns[company name]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="company name"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[company name]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company name]" />
+                        <inputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].Columns[company contact]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="company contact"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[company contact]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company contact]" />
+                        <inputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].Columns[company location]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="company location"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[company location]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[company location]" />
+                        <inputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].Columns[customer modified date]"
+                          cachedDataType="dbDate"
+                          cachedName="customer modified date"
+                          externalMetadataColumnId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer modified date]"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB].Columns[customer modified date]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid From]"
+                          dataType="dbTimeStamp"
+                          name="Valid From" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid To]"
+                          dataType="dbTimeStamp"
+                          name="Valid To" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer key]"
+                          dataType="i4"
+                          name="customer key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceKey]"
+                          dataType="wstr"
+                          length="50"
+                          name="_SourceKey" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[company name]"
+                          dataType="wstr"
+                          length="100"
+                          name="company name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[company contact]"
+                          dataType="wstr"
+                          length="100"
+                          name="company contact" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[company location]"
+                          dataType="wstr"
+                          length="255"
+                          name="company location" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer modified date]"
+                          dataType="dbDate"
+                          name="customer modified date" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load Customer Dimension\DF Populate Staging.Paths[Salida de origen de OLE DB]"
+                  endId="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination.Inputs[OLE DB Destination Input]"
+                  name="Salida de origen de OLE DB"
+                  startId="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer.Outputs[Salida de origen de OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer Dimension\EXP Establecer nombre de la tabla"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{DED5C6A9-6D4D-4FA4-97DD-BD29CF1B5A19}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXP Establecer nombre de la tabla"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::TableName] = &quot;Dim_Customer&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer Dimension\SQL migrate Staging to Dim"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{36349303-8333-4B64-993F-4CE3B31CA794}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL migrate Staging to Dim"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXEC Load_DimCustomer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer Dimension\Sql obtener fecha de carga previa"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{4624071E-9BC7-45FE-BBBA-815B95ADC9DA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sql obtener fecha de carga previa"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXECUTE int.Get_LastLoadedDate ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::PreviousLoadDate" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer Dimension\Sql truncate Staging_Customer"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{8107F5BA-9164-4E3E-87F1-EBB321C9970D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sql truncate Staging_Customer"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE Staging_Customer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer Dimension\SQL update Lineage table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{EFC46AF4-AAF3-4BB1-AD78-E68122777142}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL update Lineage table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXECUTE int.Get_LineageKey ?,?,?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::LineageKey" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadType"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::LoadDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer Dimension.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{733A7C99-DA62-4F83-B8CA-C3F0548F6E67}"
+          DTS:From="Package\Load Customer Dimension\Sql obtener fecha de carga previa"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load Customer Dimension\DF Populate Staging" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer Dimension.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{F7EA2A30-CC21-4628-8DA4-6964DD78E207}"
+          DTS:From="Package\Load Customer Dimension\DF Populate Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load Customer Dimension\SQL migrate Staging to Dim" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer Dimension.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{457F3CD0-E79D-4C56-9D89-A4912DE029F4}"
+          DTS:From="Package\Load Customer Dimension\EXP Establecer nombre de la tabla"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load Customer Dimension\SQL update Lineage table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer Dimension.PrecedenceConstraints[Restricción 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{3E3BF1DD-E0FE-4405-BE35-6932A8BDCA2C}"
+          DTS:From="Package\Load Customer Dimension\SQL update Lineage table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 1"
+          DTS:To="Package\Load Customer Dimension\Sql truncate Staging_Customer" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer Dimension.PrecedenceConstraints[Restricción 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{C4162BC3-3813-4455-9C5A-B700DEE692AD}"
+          DTS:From="Package\Load Customer Dimension\Sql truncate Staging_Customer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 2"
+          DTS:To="Package\Load Customer Dimension\Sql obtener fecha de carga previa" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Payment Fact Table"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{bb14d464-cfd3-42dc-a0bb-2ca404a8835e}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Payment Fact Table">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Payment Fact Table\DF Populate Staging"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{cbbd91b9-eb21-4f26-82a7-4f5beb22275f}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DF Populate Staging"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Load_StagingPayment"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC Load_StagingPayment ?,?
+WITH RESULT SETS
+(
+    (
+        
+[customer key] [int], 
+[project key] [int], 
+[payment date] [date], 
+[payment amount] [decimal](18,2), 
+[modified_date] [date], 
+[_SourceCustomerKey] [nvarchar](50), 
+[_SourceProjectKey] [nvarchar](50)
+    )
+)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"@LastLoadDate:Input",{A4B9E10F-071E-41A1-B3A6-C32BC944815E};"@NewLoadDate:Input",{E6218830-698C-45F5-A7B0-238324757EEC};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.softdevelopersBD]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.softdevelopersBD]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[customer key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[customer key]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[customer key]"
+                          name="customer key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[project key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[project key]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[project key]"
+                          name="project key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[payment date]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[payment date]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[payment date]"
+                          name="payment date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[payment amount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[payment amount]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[payment amount]"
+                          name="payment amount"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[modified_date]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[modified_date]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[modified_date]"
+                          name="modified_date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[_SourceCustomerKey]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[_SourceCustomerKey]"
+                          length="50"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[_SourceCustomerKey]"
+                          name="_SourceCustomerKey"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[_SourceProjectKey]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[_SourceProjectKey]"
+                          length="50"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[_SourceProjectKey]"
+                          name="_SourceProjectKey"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[customer key]"
+                          dataType="i4"
+                          name="customer key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[project key]"
+                          dataType="i4"
+                          name="project key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[payment date]"
+                          dataType="dbDate"
+                          name="payment date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[payment amount]"
+                          dataType="numeric"
+                          name="payment amount"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[modified_date]"
+                          dataType="dbDate"
+                          name="modified_date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[_SourceCustomerKey]"
+                          dataType="wstr"
+                          length="50"
+                          name="_SourceCustomerKey" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[_SourceProjectKey]"
+                          dataType="wstr"
+                          length="50"
+                          name="_SourceProjectKey" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[customer key]"
+                          dataType="i4"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[customer key]"
+                          name="customer key" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[project key]"
+                          dataType="i4"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[project key]"
+                          name="project key" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[payment date]"
+                          dataType="dbDate"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[payment date]"
+                          name="payment date" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[payment amount]"
+                          dataType="numeric"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[payment amount]"
+                          name="payment amount"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[modified_date]"
+                          dataType="dbDate"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[modified_date]"
+                          name="modified_date" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[_SourceCustomerKey]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[_SourceCustomerKey]"
+                          name="_SourceCustomerKey" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[_SourceProjectKey]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[_SourceProjectKey]"
+                          name="_SourceProjectKey" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="StagingPayment_Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Staging_Payment]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.softDevelopersDW]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.softDevelopersDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].Columns[customer key]"
+                          cachedDataType="i4"
+                          cachedName="customer key"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer key]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[customer key]" />
+                        <inputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].Columns[project key]"
+                          cachedDataType="i4"
+                          cachedName="project key"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project key]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[project key]" />
+                        <inputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].Columns[payment date]"
+                          cachedDataType="dbDate"
+                          cachedName="payment date"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment date]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[payment date]" />
+                        <inputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].Columns[payment amount]"
+                          cachedDataType="numeric"
+                          cachedName="payment amount"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment amount]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[payment amount]" />
+                        <inputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].Columns[modified_date]"
+                          cachedDataType="dbDate"
+                          cachedName="modified_date"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[modified_date]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[modified_date]" />
+                        <inputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].Columns[_SourceCustomerKey]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="_SourceCustomerKey"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceCustomerKey]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[_SourceCustomerKey]" />
+                        <inputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].Columns[_SourceProjectKey]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="_SourceProjectKey"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceProjectKey]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[_SourceProjectKey]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[staging payment key]"
+                          dataType="i8"
+                          name="staging payment key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer key]"
+                          dataType="i4"
+                          name="customer key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project key]"
+                          dataType="i4"
+                          name="project key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment date]"
+                          dataType="dbDate"
+                          name="payment date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment amount]"
+                          dataType="numeric"
+                          name="payment amount"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[modified_date]"
+                          dataType="dbDate"
+                          name="modified_date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceCustomerKey]"
+                          dataType="wstr"
+                          length="50"
+                          name="_SourceCustomerKey" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceProjectKey]"
+                          dataType="wstr"
+                          length="50"
+                          name="_SourceProjectKey" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load Payment Fact Table\DF Populate Staging.Paths[OLE DB Source Output]"
+                  endId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Payment Fact Table\EXP Establecer nombre de la tabla"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{fd3e862e-ba42-445c-841e-5b62b095141d}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXP Establecer nombre de la tabla"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::TableName] = &quot;Fact_Payment&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Payment Fact Table\SQL migrate Staging to Dim"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{46a33622-8d61-42fd-925b-7783fec1dcbb}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL migrate Staging to Dim"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXEC Load_FactPayment" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Payment Fact Table\Sql obtener fecha de carga previa"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{637aedbf-1c8c-4e7a-a643-1b8e3551d717}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sql obtener fecha de carga previa"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXECUTE int.Get_LastLoadedDate ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::PreviousLoadDate" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Payment Fact Table\Sql truncate Staging_Customer"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{64d11200-a7f0-491a-86b2-7eb6c6f8f890}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sql truncate Staging_Customer"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE Staging_Payment" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Payment Fact Table\SQL update Lineage table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{ac09cb25-6e26-4c45-a5e2-d17a61345890}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL update Lineage table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXECUTE int.Get_LineageKey ?,?,?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::LineageKey" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadType"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::LoadDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Payment Fact Table.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{e3a90c5e-2454-4655-976a-445902017af9}"
+          DTS:From="Package\Load Payment Fact Table\Sql obtener fecha de carga previa"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load Payment Fact Table\DF Populate Staging" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Payment Fact Table.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{a730af5e-9c95-4b49-8bfc-b8d448451637}"
+          DTS:From="Package\Load Payment Fact Table\DF Populate Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load Payment Fact Table\SQL migrate Staging to Dim" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Payment Fact Table.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{aa97aec3-485a-49b8-b856-c7b4d5cfb26e}"
+          DTS:From="Package\Load Payment Fact Table\EXP Establecer nombre de la tabla"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load Payment Fact Table\SQL update Lineage table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Payment Fact Table.PrecedenceConstraints[Restricción 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{939bb930-b003-417c-95a6-2aff18b36b02}"
+          DTS:From="Package\Load Payment Fact Table\SQL update Lineage table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 1"
+          DTS:To="Package\Load Payment Fact Table\Sql truncate Staging_Customer" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Payment Fact Table.PrecedenceConstraints[Restricción 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{9aaaea74-1281-4424-9ae5-ae69edd55a06}"
+          DTS:From="Package\Load Payment Fact Table\Sql truncate Staging_Customer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 2"
+          DTS:To="Package\Load Payment Fact Table\Sql obtener fecha de carga previa" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Project Dimension"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{1718ee31-be30-4290-94b4-f4b8f732a65b}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Project Dimension">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Project Dimension\DF Populate Staging"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{dd5baed0-1c60-4c8b-9e0c-84859156102a}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DF Populate Staging"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Load_StagingProject"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC Load_StagingProject ?,?
+WITH RESULT SETS
+(
+    (
+       
+[_SourceKey] [nvarchar](50), 
+[project name] [nvarchar](100), 
+[project description] [text], 
+[project start date] [date], 
+[project end date] [date], 
+[project profit margin] [decimal](10,2), 
+[project state] [nvarchar](100), 
+[project deadline] [date], 
+[project modified date] [date], 
+[Valid From] [datetime], 
+[Valid To] [datetime]
+    )
+)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"@LastLoadDate:Input",{A4B9E10F-071E-41A1-B3A6-C32BC944815E};"@NewLoadDate:Input",{E6218830-698C-45F5-A7B0-238324757EEC};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.softdevelopersBD]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.softdevelopersBD]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[_SourceKey]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[_SourceKey]"
+                          length="50"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[_SourceKey]"
+                          name="_SourceKey"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project name]"
+                          length="100"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project name]"
+                          name="project name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project description]"
+                          codePage="1252"
+                          dataType="text"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project description]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project description]"
+                          name="project description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project start date]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project start date]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project start date]"
+                          name="project start date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project end date]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project end date]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project end date]"
+                          name="project end date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project profit margin]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project profit margin]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project profit margin]"
+                          name="project profit margin"
+                          precision="10"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project state]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project state]"
+                          length="100"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project state]"
+                          name="project state"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project deadline]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project deadline]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project deadline]"
+                          name="project deadline"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project modified date]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project modified date]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project modified date]"
+                          name="project modified date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[Valid From]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[Valid From]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[Valid From]"
+                          name="Valid From"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[Valid To]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[Valid To]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[Valid To]"
+                          name="Valid To"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[_SourceKey]"
+                          dataType="wstr"
+                          length="50"
+                          name="_SourceKey" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project name]"
+                          dataType="wstr"
+                          length="100"
+                          name="project name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project description]"
+                          codePage="1252"
+                          dataType="text"
+                          name="project description" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project start date]"
+                          dataType="dbDate"
+                          name="project start date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project end date]"
+                          dataType="dbDate"
+                          name="project end date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project profit margin]"
+                          dataType="numeric"
+                          name="project profit margin"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project state]"
+                          dataType="wstr"
+                          length="100"
+                          name="project state" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project deadline]"
+                          dataType="dbDate"
+                          name="project deadline" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project modified date]"
+                          dataType="dbDate"
+                          name="project modified date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[Valid From]"
+                          dataType="dbTimeStamp"
+                          name="Valid From" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[Valid To]"
+                          dataType="dbTimeStamp"
+                          name="Valid To" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[_SourceKey]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[_SourceKey]"
+                          name="_SourceKey" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project name]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project name]"
+                          name="project name" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project description]"
+                          codePage="1252"
+                          dataType="text"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project description]"
+                          name="project description" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project start date]"
+                          dataType="dbDate"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project start date]"
+                          name="project start date" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project end date]"
+                          dataType="dbDate"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project end date]"
+                          name="project end date" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project profit margin]"
+                          dataType="numeric"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project profit margin]"
+                          name="project profit margin"
+                          precision="10"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project state]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project state]"
+                          name="project state" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project deadline]"
+                          dataType="dbDate"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project deadline]"
+                          name="project deadline" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project modified date]"
+                          dataType="dbDate"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project modified date]"
+                          name="project modified date" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[Valid From]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[Valid From]"
+                          name="Valid From" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[Valid To]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[Valid To]"
+                          name="Valid To" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="StagingProject_Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Staging_Project]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.softDevelopersDW]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.softDevelopersDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[_SourceKey]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="_SourceKey"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceKey]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[_SourceKey]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project name]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="project name"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project name]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project name]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project description]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="project description"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project description]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project description]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project start date]"
+                          cachedDataType="dbDate"
+                          cachedName="project start date"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project start date]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project start date]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project end date]"
+                          cachedDataType="dbDate"
+                          cachedName="project end date"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project end date]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project end date]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project profit margin]"
+                          cachedDataType="numeric"
+                          cachedName="project profit margin"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project profit margin]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project profit margin]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project state]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="project state"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project state]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project state]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project deadline]"
+                          cachedDataType="dbDate"
+                          cachedName="project deadline"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project deadline]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project deadline]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project modified date]"
+                          cachedDataType="dbDate"
+                          cachedName="project modified date"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project modified date]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project modified date]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[Valid From]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Valid From"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid From]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[Valid From]" />
+                        <inputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[Valid To]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Valid To"
+                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid To]"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[Valid To]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project key]"
+                          dataType="i4"
+                          name="project key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceKey]"
+                          dataType="wstr"
+                          length="50"
+                          name="_SourceKey" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project name]"
+                          dataType="wstr"
+                          length="100"
+                          name="project name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project description]"
+                          codePage="1252"
+                          dataType="text"
+                          name="project description" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project start date]"
+                          dataType="dbDate"
+                          name="project start date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project end date]"
+                          dataType="dbDate"
+                          name="project end date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project profit margin]"
+                          dataType="numeric"
+                          name="project profit margin"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project state]"
+                          dataType="wstr"
+                          length="100"
+                          name="project state" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project deadline]"
+                          dataType="dbDate"
+                          name="project deadline" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project modified date]"
+                          dataType="dbDate"
+                          name="project modified date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid From]"
+                          dataType="dbTimeStamp"
+                          name="Valid From" />
+                        <externalMetadataColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid To]"
+                          dataType="dbTimeStamp"
+                          name="Valid To" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load Project Dimension\DF Populate Staging.Paths[OLE DB Source Output]"
+                  endId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Project Dimension\EXP Establecer nombre de la tabla"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{62a9829e-a255-46c8-b1df-561864d611ce}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXP Establecer nombre de la tabla"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::TableName] = &quot;Dim_Project&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Project Dimension\SQL migrate Staging to Dim"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{001098e5-7525-4879-9c40-539c8c027a78}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL migrate Staging to Dim"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXEC Load_DimProject" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Project Dimension\Sql obtener fecha de carga previa"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{e21451db-6a4a-4529-a214-b4cbb1e1dbfc}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sql obtener fecha de carga previa"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXECUTE int.Get_LastLoadedDate ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::PreviousLoadDate" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Project Dimension\Sql truncate Staging_Customer"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{7f50c5cc-4c89-44ec-9876-a1c4ed501359}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sql truncate Staging_Customer"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE Staging_Project" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Project Dimension\SQL update Lineage table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{f8c9fe02-ee7b-4f86-aa31-b8450c431e35}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL update Lineage table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{37B499DB-3925-4172-AEBB-2FBA1B7C6CC4}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXECUTE int.Get_LineageKey ?,?,?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::LineageKey" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadType"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::LoadDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Project Dimension.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{340c901b-d652-463d-b9f9-5676f9495205}"
+          DTS:From="Package\Load Project Dimension\Sql obtener fecha de carga previa"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load Project Dimension\DF Populate Staging" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Project Dimension.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{b93212a9-40eb-4ae3-b820-aa29336909aa}"
+          DTS:From="Package\Load Project Dimension\DF Populate Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load Project Dimension\SQL migrate Staging to Dim" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Project Dimension.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{a453599a-9283-4f2b-97b5-d329464aaf88}"
+          DTS:From="Package\Load Project Dimension\EXP Establecer nombre de la tabla"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load Project Dimension\SQL update Lineage table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Project Dimension.PrecedenceConstraints[Restricción 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{926f05e8-2ea1-43b9-8d23-216e9c80ccb8}"
+          DTS:From="Package\Load Project Dimension\SQL update Lineage table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 1"
+          DTS:To="Package\Load Project Dimension\Sql truncate Staging_Customer" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Project Dimension.PrecedenceConstraints[Restricción 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{b7ec39a2-3acf-4bf2-851e-969f7c184fdf}"
+          DTS:From="Package\Load Project Dimension\Sql truncate Staging_Customer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 2"
+          DTS:To="Package\Load Project Dimension\Sql obtener fecha de carga previa" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Obtener fecha de carga"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Tarea de expresión"
+      DTS:DTSID="{A99BBB99-D0F2-42F2-8178-610A83BB4C62}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Obtener fecha de carga"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::LoadDate] = GETDATE()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B49F5328-034D-45F2-84EC-6E802699B739}"
+      DTS:From="Package\Obtener fecha de carga"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Customer Dimension" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A79455D7-C37C-486C-8B86-DBF91F5A91E1}"
+      DTS:From="Package\Load Customer Dimension"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load Project Dimension" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{64425899-E648-4931-9546-A69BF279D163}"
+      DTS:From="Package\Load Project Dimension"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load Payment Fact Table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Load Customer Dimension\DF Populate Staging"
+          TopLeft="234.5,104.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Load Customer Dimension\EXP Establecer nombre de la tabla"
+          TopLeft="22,9" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Load Customer Dimension\SQL migrate Staging to Dim"
+          TopLeft="471.5,105.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load Customer Dimension\Sql obtener fecha de carga previa"
+          TopLeft="7.5,103.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load Customer Dimension\Sql truncate Staging_Customer"
+          TopLeft="511.5,5.5" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Load Customer Dimension\SQL update Lineage table"
+          TopLeft="252,6" />
+        <EdgeLayout
+          Id="Package\Load Customer Dimension.PrecedenceConstraints[Constraint]"
+          TopLeft="177.5,125">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,0"
+              Start="0,0"
+              End="49.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Customer Dimension.PrecedenceConstraints[Constraint 1]"
+          TopLeft="414.5,126">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,0"
+              Start="0,0"
+              End="49.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Customer Dimension.PrecedenceConstraints[Constraint 2]"
+          TopLeft="197,28.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55,0"
+              Start="0,0"
+              End="47.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Customer Dimension.PrecedenceConstraints[Restricción 1]"
+          TopLeft="452,26.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.5,0"
+              Start="0,0"
+              End="52,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="52,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Customer Dimension.PrecedenceConstraints[Restricción 2]"
+          TopLeft="596.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-504,56"
+              Start="0,0"
+              End="-504,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="-4,28" />
+                  <mssgle:LineSegment
+                    End="-500,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-500,28"
+                    Point2="-504,28"
+                    Point3="-504,32" />
+                  <mssgle:LineSegment
+                    End="-504,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="False"
+          PanelSize="706,222"
+          Size="706,43"
+          Id="Package\Load Customer Dimension"
+          TopLeft="104.107142857143,104.785714285714" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Load Payment Fact Table\DF Populate Staging"
+          TopLeft="234.5,104.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Load Payment Fact Table\EXP Establecer nombre de la tabla"
+          TopLeft="22,9" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Load Payment Fact Table\SQL migrate Staging to Dim"
+          TopLeft="471.5,105.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load Payment Fact Table\Sql obtener fecha de carga previa"
+          TopLeft="7.5,103.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load Payment Fact Table\Sql truncate Staging_Customer"
+          TopLeft="511.5,5.5" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Load Payment Fact Table\SQL update Lineage table"
+          TopLeft="252,6" />
+        <EdgeLayout
+          Id="Package\Load Payment Fact Table.PrecedenceConstraints[Constraint]"
+          TopLeft="177.5,125">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,0"
+              Start="0,0"
+              End="49.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Payment Fact Table.PrecedenceConstraints[Constraint 1]"
+          TopLeft="414.5,126">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,0"
+              Start="0,0"
+              End="49.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Payment Fact Table.PrecedenceConstraints[Constraint 2]"
+          TopLeft="197,28.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55,0"
+              Start="0,0"
+              End="47.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Payment Fact Table.PrecedenceConstraints[Restricción 1]"
+          TopLeft="452,26.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.5,0"
+              Start="0,0"
+              End="52,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="52,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Payment Fact Table.PrecedenceConstraints[Restricción 2]"
+          TopLeft="596.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-504,56"
+              Start="0,0"
+              End="-504,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="-4,28" />
+                  <mssgle:LineSegment
+                    End="-500,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-500,28"
+                    Point2="-504,28"
+                    Point3="-504,32" />
+                  <mssgle:LineSegment
+                    End="-504,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="False"
+          PanelSize="704,207"
+          Size="228,43"
+          Id="Package\Load Payment Fact Table"
+          TopLeft="345.726190476191,271.70238095238" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Load Project Dimension\DF Populate Staging"
+          TopLeft="234.5,104.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Load Project Dimension\EXP Establecer nombre de la tabla"
+          TopLeft="22,9" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Load Project Dimension\SQL migrate Staging to Dim"
+          TopLeft="471.5,105.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load Project Dimension\Sql obtener fecha de carga previa"
+          TopLeft="7.5,103.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load Project Dimension\Sql truncate Staging_Customer"
+          TopLeft="511.5,5.5" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Load Project Dimension\SQL update Lineage table"
+          TopLeft="252,6" />
+        <EdgeLayout
+          Id="Package\Load Project Dimension.PrecedenceConstraints[Constraint]"
+          TopLeft="177.5,125">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,0"
+              Start="0,0"
+              End="49.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Project Dimension.PrecedenceConstraints[Constraint 1]"
+          TopLeft="414.5,126">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,0"
+              Start="0,0"
+              End="49.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Project Dimension.PrecedenceConstraints[Constraint 2]"
+          TopLeft="197,28.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55,0"
+              Start="0,0"
+              End="47.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Project Dimension.PrecedenceConstraints[Restricción 1]"
+          TopLeft="452,26.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.5,0"
+              Start="0,0"
+              End="52,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="52,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Project Dimension.PrecedenceConstraints[Restricción 2]"
+          TopLeft="596.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-504,56"
+              Start="0,0"
+              End="-504,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="-4,28" />
+                  <mssgle:LineSegment
+                    End="-500,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-500,28"
+                    Point2="-504,28"
+                    Point3="-504,32" />
+                  <mssgle:LineSegment
+                    End="-504,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="False"
+          PanelSize="704,207"
+          Size="704,43"
+          Id="Package\Load Project Dimension"
+          TopLeft="103.964285714286,186.285714285714" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Obtener fecha de carga"
+          TopLeft="366.392857142857,30.6785714285715" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="459.25,72.6785714285715">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.1071428571428"
+              Start="0,0"
+              End="0,24.6071428571428">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.6071428571428" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="456.535714285715,147.785714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.4999999999997"
+              Start="0,0"
+              End="0,30.9999999999997">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.9999999999997" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="457.845238095238,229.285714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.4166666666664"
+              Start="0,0"
+              End="0,34.9166666666664">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9166666666664" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Customer Dimension\DF Populate Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination"
+          TopLeft="388,35" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer"
+          TopLeft="111,35" />
+        <EdgeLayout
+          Id="Package\Load Customer Dimension\DF Populate Staging.Paths[Salida de origen de OLE DB]"
+          TopLeft="306,56">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82,0"
+              Start="0,0"
+              End="74.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="74.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Customer Dimension\DF Populate Staging\Load_StagingCustomer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Customer Dimension\DF Populate Staging\StagingCustomer_Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Payment Fact Table\DF Populate Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment"
+          TopLeft="123,71" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination"
+          TopLeft="382,74" />
+        <EdgeLayout
+          Id="Package\Load Payment Fact Table\DF Populate Staging.Paths[OLE DB Source Output]"
+          TopLeft="313,93.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69,0"
+              Start="0,0"
+              End="61.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="61.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Project Dimension\DF Populate Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject"
+          TopLeft="120,80" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination"
+          TopLeft="378,80" />
+        <EdgeLayout
+          Id="Package\Load Project Dimension\DF Populate Staging.Paths[OLE DB Source Output]"
+          TopLeft="301,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77,0"
+              Start="0,0"
+              End="69.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
