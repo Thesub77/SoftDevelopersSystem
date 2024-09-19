@@ -7,12 +7,12 @@
   DTS:CreatorName="LABCBT-28\Estudiante"
   DTS:DTSID="{A791BE9E-5511-4E2A-ADBB-DC63C738BFD0}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="19466"
   DTS:ObjectName="load_DW"
   DTS:PackageType="5"
-  DTS:VersionBuild="45"
-  DTS:VersionGUID="{044BD1D4-F177-4A12-BDA3-357D8F295EF3}">
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{6D27DAFB-3249-4C53-89E4-3A9A9A244874}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -776,7 +776,8 @@ WITH RESULT SETS
 [customer key] [int], 
 [project key] [int], 
 [payment date] [date], 
-[payment amount] [decimal](18,2), 
+[payment amount] [decimal](18,2),
+[profit margin] [decimal](18,2), 
 [modified_date] [date], 
 [_SourceCustomerKey] [nvarchar](50), 
 [_SourceProjectKey] [nvarchar](50)
@@ -884,6 +885,17 @@ WITH RESULT SETS
                           lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[_SourceProjectKey]"
                           name="_SourceProjectKey"
                           truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[profit margin]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[profit margin]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[profit margin]"
+                          name="profit margin"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -919,6 +931,12 @@ WITH RESULT SETS
                           dataType="wstr"
                           length="50"
                           name="_SourceProjectKey" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].ExternalColumns[profit margin]"
+                          dataType="numeric"
+                          name="profit margin"
+                          precision="18"
+                          scale="2" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -946,6 +964,13 @@ WITH RESULT SETS
                           dataType="numeric"
                           lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[payment amount]"
                           name="payment amount"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[profit margin]"
+                          dataType="numeric"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Error Output].Columns[profit margin]"
+                          name="profit margin"
                           precision="18"
                           scale="2" />
                         <outputColumn
@@ -1100,6 +1125,14 @@ WITH RESULT SETS
                           cachedName="_SourceProjectKey"
                           externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[_SourceProjectKey]"
                           lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[_SourceProjectKey]" />
+                        <inputColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].Columns[profit margin]"
+                          cachedDataType="numeric"
+                          cachedName="profit margin"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[profit margin]"
+                          lineageId="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment.Outputs[OLE DB Source Output].Columns[profit margin]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1139,6 +1172,12 @@ WITH RESULT SETS
                           dataType="wstr"
                           length="50"
                           name="_SourceProjectKey" />
+                        <externalMetadataColumn
+                          refId="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination.Inputs[OLE DB Destination Input].ExternalColumns[profit margin]"
+                          dataType="numeric"
+                          name="profit margin"
+                          precision="18"
+                          scale="2" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1242,13 +1281,13 @@ WITH RESULT SETS
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Load Payment Fact Table\Sql truncate Staging_Customer"
+          DTS:refId="Package\Load Payment Fact Table\Sql truncate Staging_Payment"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Tarea Ejecutar SQL"
           DTS:DTSID="{64d11200-a7f0-491a-86b2-7eb6c6f8f890}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Sql truncate Staging_Customer"
+          DTS:ObjectName="Sql truncate Staging_Payment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
@@ -1333,12 +1372,12 @@ WITH RESULT SETS
           DTS:From="Package\Load Payment Fact Table\SQL update Lineage table"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Restricción 1"
-          DTS:To="Package\Load Payment Fact Table\Sql truncate Staging_Customer" />
+          DTS:To="Package\Load Payment Fact Table\Sql truncate Staging_Payment" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Load Payment Fact Table.PrecedenceConstraints[Restricción 2]"
           DTS:CreationName=""
           DTS:DTSID="{9aaaea74-1281-4424-9ae5-ae69edd55a06}"
-          DTS:From="Package\Load Payment Fact Table\Sql truncate Staging_Customer"
+          DTS:From="Package\Load Payment Fact Table\Sql truncate Staging_Payment"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Restricción 2"
           DTS:To="Package\Load Payment Fact Table\Sql obtener fecha de carga previa" />
@@ -1403,7 +1442,6 @@ WITH RESULT SETS
 [project description] [text], 
 [project start date] [date], 
 [project end date] [date], 
-[project profit margin] [decimal](10,2), 
 [project state] [nvarchar](100), 
 [project deadline] [date], 
 [project modified date] [date], 
@@ -1495,17 +1533,6 @@ WITH RESULT SETS
                           name="project end date"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project profit margin]"
-                          dataType="numeric"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project profit margin]"
-                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project profit margin]"
-                          name="project profit margin"
-                          precision="10"
-                          scale="2"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
                           refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project state]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
@@ -1578,12 +1605,6 @@ WITH RESULT SETS
                           dataType="dbDate"
                           name="project end date" />
                         <externalMetadataColumn
-                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project profit margin]"
-                          dataType="numeric"
-                          name="project profit margin"
-                          precision="10"
-                          scale="2" />
-                        <externalMetadataColumn
                           refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].ExternalColumns[project state]"
                           dataType="wstr"
                           length="100"
@@ -1639,13 +1660,6 @@ WITH RESULT SETS
                           dataType="dbDate"
                           lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project end date]"
                           name="project end date" />
-                        <outputColumn
-                          refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project profit margin]"
-                          dataType="numeric"
-                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project profit margin]"
-                          name="project profit margin"
-                          precision="10"
-                          scale="2" />
                         <outputColumn
                           refId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Error Output].Columns[project state]"
                           dataType="wstr"
@@ -1795,14 +1809,6 @@ WITH RESULT SETS
                           externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project end date]"
                           lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project end date]" />
                         <inputColumn
-                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project profit margin]"
-                          cachedDataType="numeric"
-                          cachedName="project profit margin"
-                          cachedPrecision="10"
-                          cachedScale="2"
-                          externalMetadataColumnId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project profit margin]"
-                          lineageId="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject.Outputs[OLE DB Source Output].Columns[project profit margin]" />
-                        <inputColumn
                           refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].Columns[project state]"
                           cachedDataType="wstr"
                           cachedLength="100"
@@ -1863,12 +1869,6 @@ WITH RESULT SETS
                           refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project end date]"
                           dataType="dbDate"
                           name="project end date" />
-                        <externalMetadataColumn
-                          refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project profit margin]"
-                          dataType="numeric"
-                          name="project profit margin"
-                          precision="10"
-                          scale="2" />
                         <externalMetadataColumn
                           refId="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination.Inputs[OLE DB Destination Input].ExternalColumns[project state]"
                           dataType="wstr"
@@ -2331,7 +2331,7 @@ WITH RESULT SETS
           TopLeft="7.5,103.5" />
         <NodeLayout
           Size="170,42"
-          Id="Package\Load Payment Fact Table\Sql truncate Staging_Customer"
+          Id="Package\Load Payment Fact Table\Sql truncate Staging_Payment"
           TopLeft="511.5,5.5" />
         <NodeLayout
           Size="200,42"
@@ -2356,9 +2356,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2380,9 +2378,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2404,9 +2400,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2428,9 +2422,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2464,18 +2456,16 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="False"
           PanelSize="704,207"
-          Size="228,43"
+          Size="704,43"
           Id="Package\Load Payment Fact Table"
-          TopLeft="345.726190476191,271.70238095238" />
+          TopLeft="104.726190476191,268.70238095238" />
         <NodeLayout
           Size="180,42"
           Id="Package\Load Project Dimension\DF Populate Staging"
@@ -2519,9 +2509,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2543,9 +2531,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2567,9 +2553,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2591,9 +2575,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2627,9 +2609,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
@@ -2671,14 +2651,14 @@ WITH RESULT SETS
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.4999999999997"
+              EndConnector="0,38.5"
               Start="0,0"
-              End="0,30.9999999999997">
+              End="0,31">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.9999999999997" />
+                    End="0,31" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2689,18 +2669,18 @@ WITH RESULT SETS
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="457.845238095238,229.285714285714">
+          TopLeft="456.345238095239,229.285714285714">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,42.4166666666664"
+              EndConnector="0,39.4166666666661"
               Start="0,0"
-              End="0,34.9166666666664">
+              End="0,31.9166666666661">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.9166666666664" />
+                    End="0,31.9166666666661" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2779,13 +2759,13 @@ WITH RESULT SETS
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="190,42"
-          Id="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment"
-          TopLeft="123,71" />
-        <NodeLayout
           Size="221,42"
           Id="Package\Load Payment Fact Table\DF Populate Staging\StagingPayment_Destination"
           TopLeft="382,74" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Load Payment Fact Table\DF Populate Staging\Load_StagingPayment"
+          TopLeft="123,71" />
         <EdgeLayout
           Id="Package\Load Payment Fact Table\DF Populate Staging.Paths[OLE DB Source Output]"
           TopLeft="313,93.5">
@@ -2836,15 +2816,15 @@ WITH RESULT SETS
     design-time-name="Package\Load Project Dimension\DF Populate Staging">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject"
-          TopLeft="120,80" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="212,42"
           Id="Package\Load Project Dimension\DF Populate Staging\StagingProject_Destination"
           TopLeft="378,80" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Load Project Dimension\DF Populate Staging\Load_StagingProject"
+          TopLeft="120,80" />
         <EdgeLayout
           Id="Package\Load Project Dimension\DF Populate Staging.Paths[OLE DB Source Output]"
           TopLeft="301,101">
@@ -2864,9 +2844,7 @@ WITH RESULT SETS
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
